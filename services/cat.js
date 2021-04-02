@@ -18,6 +18,54 @@ async function getMultiple(page = 1){
   }
 }
 
+async function create(req){
+  console.log(req);
+
+  const result = await db.query(
+    `INSERT INTO cat  
+    (name, gender, age, color, user_id) 
+    VALUES 
+    (?, ?, ?, ?, ?)`, 
+    [
+      req.name, req.gender,
+      req.age, req.color,
+      req.user_id
+    ]
+  );
+
+  let message = 'Error in creating cat';
+
+  if (result.affectedRows) {
+    message = 'Cat created successfully';
+  }
+
+  return {message};
+}
+
+async function update(id, req){
+  const result = await db.query(
+    `UPDATE cat 
+    SET name=?, gender=?, age=?, 
+    color=?, user_id=? 
+    WHERE id=?`, 
+    [
+      cat.name, cat.gender,
+      cat.age, cat.color,
+      cat.user_id, id
+    ]
+  );
+
+  let message = 'Error in updating cat';
+
+  if (result.affectedRows) {
+    message = 'Cat updated successfully';
+  }
+
+  return {message};
+}
+
 module.exports = {
-  getMultiple
+  getMultiple,
+  create,
+  update
 }
