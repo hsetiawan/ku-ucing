@@ -6,7 +6,9 @@ async function getMultiple(page = 1){
   const offset = helper.getOffset(page, config.listPerPage);
   const rows = await db.query(
     `SELECT id, name, gender, age, color, user_id
-    FROM cat LIMIT ?,?`, 
+    FROM cat
+    WHERE IS_DELETED = FALSE
+    LIMIT ?,?`, 
     [offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);
@@ -49,9 +51,9 @@ async function update(id, req){
     color=?, user_id=? 
     WHERE id=?`, 
     [
-      cat.name, cat.gender,
-      cat.age, cat.color,
-      cat.user_id, id
+      req.name, req.gender,
+      req.age, req.color,
+      req.user_id, id
     ]
   );
 
@@ -64,8 +66,30 @@ async function update(id, req){
   return {message};
 }
 
+
+async function Deleted(id){
+  const result = await db.query(
+    `UPDATE cat 
+    SET is_deleted = TRUE 
+    WHERE id=?`, 
+    [
+      id
+    ]
+  );
+
+  let message = 'Error in delete cat';
+
+  if (result.affectedRows) {
+    message = 'Cat Deleted successfully';
+  }
+
+  return {message};
+}
+
+
 module.exports = {
   getMultiple,
   create,
-  update
+  update,
+  Deleted
 }
