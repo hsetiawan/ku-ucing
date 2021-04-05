@@ -1,6 +1,12 @@
 const express = require('express');
 const app = express();
 const cats = require('./controllers/cat');
+const diseases = require('./controllers/disease');
+const symptoms = require('./controllers/symptoms');
+const permission = require('./controllers/permission');
+
+const address = require('./controllers/address');
+
 const bodyParser = require('body-parser');
 
 
@@ -25,6 +31,12 @@ const bodyParser = require('body-parser');
 
 app.use(express.json());
 app.use('/cat', cats);
+app.use('/disease', diseases);
+app.use('/symptoms', symptoms);
+app.use('/permission', permission);
+
+app.use('/address', address);
+
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
