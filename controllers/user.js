@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const userService = require('../services/user');
+const service = require('../services/user');
 
 /* GET cats. */
 router.get('/', async function(req, res, next) {
   try {
-    res.json(await cats.getMultiple(req.query.page));
+    res.json(await service.getMultiple(req.query.page));
   } catch (err) {
     console.error(`Error while getting cats `, err.message);
     next(err);
@@ -17,7 +17,7 @@ router.get('/', async function(req, res, next) {
 router.post('/', async function(req, res, next) {
   try {
     console.log(req);
-    res.json(await cats.create(req.body));
+    res.json(await service.create(req.body));
   } catch (err) {
     console.error(`Error while create cats `, err.message);
     next(err);
@@ -28,7 +28,7 @@ router.post('/', async function(req, res, next) {
 router.put('/:id', async function(req, res, next) {
   try {
     console.log(req);
-    res.json(await cats.update(req.params.id ,req.body));
+    res.json(await service.update(req.params.id ,req.body));
   } catch (err) {
     console.error(`Error while update cats `, err.message);
     next(err);
@@ -40,7 +40,7 @@ router.put('/:id', async function(req, res, next) {
 router.delete('/:id', async function(req, res, next) {
   try {
     console.log(req);
-    res.json(await cats.Deleted(req.params.id));
+    res.json(await service.Deleted(req.params.id));
   } catch (err) {
     console.error(`Error while update cats `, err.message);
     next(err);

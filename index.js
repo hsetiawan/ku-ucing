@@ -7,6 +7,7 @@ const medication = require('./controllers/medication');
 
 const permission = require('./controllers/permission');
 const address = require('./controllers/address');
+const user = require('./controllers/user');
 
 const bodyParser = require('body-parser');
 
@@ -39,6 +40,7 @@ app.use('/medication', medication);
 app.use('/permission', permission);
 
 app.use('/address', address);
+app.use('/user', user);
 
 
 /* Error handler middleware */
