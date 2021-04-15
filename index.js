@@ -12,26 +12,11 @@ const user = require('./controllers/user');
 const bodyParser = require('body-parser');
 
 
-//middelware
-// app.use(function(req, res, next) { 
-//     console.log(req.method, req.path); 
-//     next();
-// });
-
-// app.get('/', function (req, res) {    
-//     res.send("<h1>Demo page Get</h1>");
-// });
-// app.post('/', function (req, res) {    
-//     res.send("<h1>Demo page Post</h1>");
-// });
-// app.put('/', function (req, res) {    
-//     res.send("<h1>Demo page Put</h1>");
-// });
-// app.delete('/', function (req, res) {    
-//     res.send("<h1>Demo page Delete</h1>");
-// });
 
 app.use(express.json());
+// serve your css as static
+app.use(express.static('public'));
+
 app.use('/cat', cats);
 app.use('/disease', diseases);
 app.use('/symptoms', symptoms);
@@ -51,7 +36,11 @@ app.use((err, req, res, next) => {
   
   
     return;
-  });
+});
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/views/index.html");
+});
 
 // listen on port
 app.listen(3010, () => console.log('Server Running at http://localhost:3010'));
