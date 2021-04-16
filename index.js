@@ -1,5 +1,9 @@
 const express = require('express');
 const app = express();
+const nunjucks=require('nunjucks');
+const bodyParser = require('body-parser');
+const chokidar = require('chokidar'); 
+
 const cats = require('./controllers/cat');
 const diseases = require('./controllers/disease');
 const symptoms = require('./controllers/symptoms');
@@ -9,13 +13,19 @@ const permission = require('./controllers/permission');
 const address = require('./controllers/address');
 const user = require('./controllers/user');
 
-const bodyParser = require('body-parser');
-
-
-
 app.use(express.json());
+
 // serve your css as static
 app.use(express.static('public'));
+
+app.set('view engine', 'html');
+
+
+nunjucks.configure('views',{
+  express:app,
+  autoscape:true,
+  noCache:false
+}); 
 
 app.use('/cat', cats);
 app.use('/disease', diseases);
@@ -33,13 +43,14 @@ app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     console.error(err.message, err.stack);
     res.status(statusCode).json({'message': err.message});
-  
-  
+
     return;
 });
 
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/views/index.html");
+app.get("/", (req, res, next) => {
+  res.render('index.html', {
+    title : 'KU-UCING - Temukan penyakit dan solusi yang tepat untuk kucing kamu'
+  });
 });
 
 // listen on port

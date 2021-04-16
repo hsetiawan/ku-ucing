@@ -6,3 +6,8 @@
  */
 
 /*# sourceMappingURL=custom.css.map */
+
+.main-sidebar .sidebar-menu li a span{
+    font-size: 16px Im !important;
+    font-weight: 900;
+}
