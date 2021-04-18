@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <link rel="shortcut icon" href="/img/cat-in-black-silhouette.png">
-  <title>{{title}}</title>
+  <title>KU-UCING - Temukan penyakit dan solusi yang tepat untuk kucing kamu</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -31,6 +31,7 @@
      
       <!-- Main Content -->
       <div class="main-content">
+         <br/> 
         {% block content %}
         {% endblock %}
       </div>
@@ -64,17 +65,6 @@
   <!-- Template JS File -->
   <script src="/js/scripts.js"></script>
   <script src="/js/custom.js"></script>
-
-  <!-- Page Specific JS File -->
-  <script src="/js/page/index.js"></script>
-
-  <script>
-    $("#table-1").dataTable({
-      "columnDefs": [
-        { "sortable": false, "targets": [2,3] }
-      ]
-    });
-    
-    </script>
+ 
 </body>
 </html>

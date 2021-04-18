@@ -27,15 +27,15 @@ nunjucks.configure('views',{
   noCache:false
 }); 
 
-app.use('/cat', cats);
-app.use('/disease', diseases);
-app.use('/symptoms', symptoms);
-app.use('/medication', medication);
+app.use('/api/cat', cats);
+app.use('/api/disease', diseases);
+app.use('/api/symptoms', symptoms);
+app.use('/api/medication', medication);
 
-app.use('/permission', permission);
+app.use('/api/permission', permission);
 
-app.use('/address', address);
-app.use('/user', user);
+app.use('/api/address', address);
+app.use('/api/user', user);
 
 
 /* Error handler middleware */
@@ -48,9 +48,21 @@ app.use((err, req, res, next) => {
 });
 
 app.get("/", (req, res, next) => {
-  res.render('index.html', {
-    title : 'KU-UCING - Temukan penyakit dan solusi yang tepat untuk kucing kamu'
-  });
+  res.render('index.html');
+});
+
+const selectedPage = ['disease', 'symptom', 'diagnosis'];
+
+app.get('/:page', function(req, res) {
+  page = req.params.page;
+  
+  if (selectedPage.includes(page)) {
+    res.render('pages/'+page, {
+      menuActive:page+'_active'
+    });
+  } else {
+    res.send('404: Page not Found', 404);
+  }
 });
 
 // listen on port

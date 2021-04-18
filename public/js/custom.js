@@ -6,3 +6,25 @@
  */
 
 "use strict";
+
+$("#table-1").dataTable({
+    "columnDefs": [
+      { "sortable": false, "targets": [2] }
+    ]
+  });
+   
+
+
+ $("#disease-table").dataTable({
+    "paging": true,
+    "pageLength": 10,
+    "ajax": {
+        data:"json",
+        url: "/api/disease",
+        type: "GET"
+    }, 
+    "columns": [
+        { "data": null, "sortable": false },
+        { "data": "name" }
+    ] 
+});

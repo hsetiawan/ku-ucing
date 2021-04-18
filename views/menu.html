@@ -8,15 +8,15 @@
       </div>
       <ul class="sidebar-menu">
           <li class="menu-header">Dashboard</li>
-          <li class="nav-item dropdown active">
+          <li class="nav-item dropdown">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
           </li>
           <li class="menu-header">Pengobatan</li>
-          <li><a class="nav-link" href="blank.html"><i class="fas fa-vimeo"></i><span>Penyakit</span></a></li>
-          <li><a class="nav-link" href="blank.html"><i class="fas fa-asterisk"></i><span>Gejala</span></a></li>
-          <li><a class="nav-link" href="blank.html"><i class="fas fa-check"></i> <span>Obat</span></a></li>
+          <li class="{% if menuActive == 'disease_active' %} active {%endif%}" ><a class="nav-link" href="disease"><i class="fas fa-vimeo"></i><span>Penyakit</span></a></li>
+          <li class="{% if menuActive == 'symptoms_active' %} active {%endif%}" ><a class="nav-link" href="symptoms"><i class="fas fa-asterisk"></i><span>Gejala</span></a></li>
+          <li class="{% if menuActive == 'medication_active' %} active {%endif%}" ><a class="nav-link" href="medication"><i class="fas fa-check"></i> <span>Obat</span></a></li>
           <li class="menu-header"></li>
-          <li><a class="nav-link" href="blank.html"><i class="fas fa-user"></i><span>Pemilik</span></a></li>
-          <li><a class="nav-link" href="blank.html"><i class="fas fa-cat"></i><span>Kucing</span></a></li>
+          <li class="{% if menuActive == 'user_active' %} active {%endif%}" ><a class="nav-link" href="user"><i class="fas fa-user"></i><span>Pemilik</span></a></li>
+          <li class="{% if menuActive == 'cat_active' %} active {%endif%}" ><a class="nav-link" href="cat"><i class="fas fa-cat"></i><span>Kucing</span></a></li>
     </aside>
   </div>
